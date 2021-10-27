@@ -1,6 +1,11 @@
 from flask import Flask, render_template, request, redirect
 
-from todo_app.data.session_items import add_item, get_item, remove_item, get_sorted_items
+from todo_app.data.session_items import (
+    add_item,
+    get_item,
+    remove_item,
+    get_sorted_items,
+)
 from todo_app.flask_config import Config
 
 app = Flask(__name__)
