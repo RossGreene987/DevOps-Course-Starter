@@ -49,7 +49,4 @@ def save_item(item):
 
 
 def remove_item(item_id):
-    print([item["id"] for item in session["items"]])
-    print(item_id)
-
-    session["items"] = [item for item in session["items"] if item["id"] != item_id]
+    session["items"] = [item for item in get_items() if item["id"] != item_id]
