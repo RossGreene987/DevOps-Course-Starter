@@ -13,16 +13,15 @@
             <ul class="list-group mb-4">
             {% for item in items %}
                 <li>
-                    {{ item.title }}
-                    {%  if item.status == "Not Started" %}
-                        <form action="/complete" method=post class=complete-item>
-                            <input type=hidden name=id_to_complete value={{ item.id }} >
+                    {{ item.title }}<br>
+                    status: {{ item.status.value }}
+                    {%  if item.status.value == "To Do" %}
+                        <form action="/complete/{{ item.id }}" method=post class=complete-item>
                             <button value="complete">Mark as complete</button>
                         </form>
                     {%  endif %}
 
-                    <form action="/delete" method=post class=delete-item>
-                        <input type=hidden name=id_to_delete value="{{ item.id }}" >
+                    <form action="/remove/{{ item.id }}" method=post class=delete-item>
                         <button value="delete">Delete</button>
                     </form>
                 </li>
