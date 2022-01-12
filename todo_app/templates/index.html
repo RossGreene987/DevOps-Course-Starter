@@ -7,27 +7,57 @@
         <p class="lead">Just another to-do app.</p>
     </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Items</h2>
-            <ul class="list-group mb-4">
-            {% for item in items %}
-                <li>
-                    {{ item.title }}<br>
-                    status: {{ item.status.value }}
-                    {%  if item.status.value == "To Do" %}
-                        <form action="/complete/{{ item.id }}" method=post class=complete-item>
-                            <button value="complete">Mark as complete</button>
-                        </form>
-                    {%  endif %}
+    <div class="item_status_group" id="todo">
+        <h3>TODO:</h3>
+        <ul class="list-group mb-4">
+        {% for item in view_model.to_do_items %}
+            <li>
+                <h5>{{ item.title }}</h5>
+                <form action="/begin/{{ item.id }}" method=post class=begin-item>
+                    <button value="complete">Mark as in progress</button>
+                </form>
 
+                <form action="/remove/{{ item.id }}" method=post class=delete-item>
+                    <button value="delete">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    <br>
+
+    <div>
+        <h2>DOING:</h2>
+        <ul class="list-group mb-4">
+        {% for item in view_model.doing_items %}
+            <li>
+                <h5>{{ item.title }}</h5>
+                <form action="/complete/{{ item.id }}" method=post class=complete-item>
+                    <button value="complete">Mark as complete</button>
+                </form>
+                <form action="/remove/{{ item.id }}" method=post class=delete-item>
+                    <button value="delete">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    <br>
+
+    <div>
+        <h2>DONE:</h2>
+        <ul class="list-group mb-4">
+            {% for item in view_model.done_items %}
+                <li>
+                    <h5>{{ item.title }}</h5>
                     <form action="/remove/{{ item.id }}" method=post class=delete-item>
                         <button value="delete">Delete</button>
                     </form>
                 </li>
             {% endfor %}
-            </ul>
-        </div>
+        </ul>
     </div>
 
     <div class="add_new">
