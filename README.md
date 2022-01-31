@@ -56,4 +56,5 @@ Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser
 
 ## Testing
 
-Run `poetry run pytest` to run unit tests locally
+Run `poetry run pytest test` to run unit & integration tests locally 
+or `poetry run pytest test_e2e` to run end-to-end tests

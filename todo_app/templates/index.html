@@ -9,9 +9,9 @@
 
     <div class="item_status_group" id="todo">
         <h3>TODO:</h3>
-        <ul class="list-group mb-4">
+        <ul class="list-group mb-4" id="todo-list">
         {% for item in view_model.to_do_items %}
-            <li>
+            <li class="todo-item">
                 <h5>{{ item.title }}</h5>
                 <form action="/begin/{{ item.id }}" method=post class=begin-item>
                     <button value="complete">Mark as in progress</button>
@@ -29,9 +29,9 @@
 
     <div>
         <h2>DOING:</h2>
-        <ul class="list-group mb-4">
+        <ul class="list-group mb-4" id="doing-list">
         {% for item in view_model.doing_items %}
-            <li>
+            <li class="to-do-item">
                 <h5>{{ item.title }}</h5>
                 <form action="/complete/{{ item.id }}" method=post class=complete-item>
                     <button value="complete">Mark as complete</button>
@@ -48,9 +48,9 @@
 
     <div>
         <h2>DONE:</h2>
-        <ul class="list-group mb-4">
+        <ul class="list-group mb-4" id="done-list">
             {% for item in view_model.done_items %}
-                <li>
+                <li class="to-do-item">
                     <h5>{{ item.title }}</h5>
                     <form action="/remove/{{ item.id }}" method=post class=delete-item>
                         <button value="delete">Delete</button>
@@ -61,7 +61,7 @@
     </div>
 
     <div class="add_new">
-        <form action="/add" method="post">
+        <form action="/add" method="post" id="add_item">
             <label for="new_item">Add new item:</label>
             <input type="text" id="new_item" name="new_item" required minlength="4">
             <input type="submit" value="Add">
