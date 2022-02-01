@@ -25,7 +25,6 @@ def delete_trello_board(id):
     _make_authorised_request(url, "DELETE")
 
 
-
 @pytest.fixture(scope="module")
 def app_with_temp_board():
     # Create the new board & update the board id environment variable

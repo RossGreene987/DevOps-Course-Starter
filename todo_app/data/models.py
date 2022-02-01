@@ -44,3 +44,7 @@ class ViewModel:
 
     def items_with_status(self, status: Status):
         return [item for item in self.items if item.status == status]
+
+    @property
+    def should_show_all_done_items(self):
+        return len(self.done_items) > 5
