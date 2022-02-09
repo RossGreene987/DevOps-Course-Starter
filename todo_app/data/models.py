@@ -1,4 +1,11 @@
 from enum import Enum
+from typing import List
+
+
+class Status(Enum):
+    TODO = "To Do"
+    STARTED = "Doing"
+    COMPLETED = "Done"
 
 
 class Item:
@@ -15,7 +22,29 @@ class Item:
         return f"id: {self.id}, name: {self.title}, status: {self.status}, list_id: {self.list_id}"
 
 
-class Status(Enum):
-    TODO = "To Do"
-    STARTED = "Doing"
-    COMPLETED = "Done"
+class ViewModel:
+    def __init__(self, items: List[Item]):
+        self._items = items
+
+    @property
+    def items(self):
+        return self._items
+
+    @property
+    def to_do_items(self):
+        return self.items_with_status(Status.TODO)
+
+    @property
+    def doing_items(self):
+        return self.items_with_status(Status.STARTED)
+
+    @property
+    def done_items(self):
+        return self.items_with_status(Status.COMPLETED)
+
+    def items_with_status(self, status: Status):
+        return [item for item in self.items if item.status == status]
+
+    @property
+    def should_show_all_done_items(self):
+        return len(self.done_items) > 5
