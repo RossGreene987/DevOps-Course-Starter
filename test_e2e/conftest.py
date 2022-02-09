@@ -12,7 +12,6 @@ from todo_app import app
 from todo_app.data.trello_items import _make_authorised_request
 
 
-
 def load_run_environment():
     load_dotenv(find_dotenv(".env"), override=True)
 
