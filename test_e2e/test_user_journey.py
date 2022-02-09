@@ -10,6 +10,6 @@ def test_page_loads(driver, app_with_temp_board):
     elem = driver.find_element(By.ID, "new_item")
     elem.send_keys(new_item)
     elem.submit()
-    sleep(1)
+    driver.implicitly_wait(1)
 
     assert new_item in driver.find_element(By.CLASS_NAME, "todo-item").text

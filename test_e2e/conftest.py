@@ -12,8 +12,12 @@ from todo_app import app
 from todo_app.data.trello_items import _make_authorised_request
 
 
-def create_trello_board():
+
+def load_run_environment():
     load_dotenv(find_dotenv(".env"), override=True)
+
+
+def create_trello_board():
     board_name = "test-board"
     url = f"https://api.trello.com/1/boards/?name={board_name}"
     request = _make_authorised_request(url, "POST")
@@ -27,6 +31,8 @@ def delete_trello_board(id):
 
 @pytest.fixture(scope="module")
 def app_with_temp_board():
+    load_run_environment()
+
     # Create the new board & update the board id environment variable
     board_id = create_trello_board()
     os.environ["TRELLO_BOARD_ID"] = board_id
