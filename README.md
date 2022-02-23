@@ -54,6 +54,12 @@ You should see output similar to the following:
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
 
+## Running the app with Ansible from control node
+With `ansible-playbook`, `create-todo-app.yaml` and `.env.j2` on the control node, and ansible installed, run
+```
+ansible-playbook create-todo-app.yaml -i ansible-inventory
+```
+
 ## Testing
 
 Run `poetry run pytest test` to run unit & integration tests locally 
